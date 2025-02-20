@@ -1,5 +1,7 @@
 package edu.iastate.cs2280.hw1;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,7 +15,34 @@ public class PlainTest {
 		+ "F0 F0 R0 \n"
 		+ "F0 E  G  \n");
 	}
-//	
+	
+	@Test
+	void writeTest() throws IOException {
+		String fileName = "TestFile.txt";
+		File file = new File(fileName);
+		file.delete();
+
+		Plain plain = new Plain("public1-3x3.txt");
+		plain.write("TestFile.txt");
+		Assertions.assertTrue(new File(fileName).isFile());
+	}
+	
+	
+	//checking file can be read, saved to a file, read again and the class objects will be "equal" comparison through string
+	@Test
+	void writeTest2() throws IOException {
+		String fileName = "TestFile.txt";
+		File file = new File(fileName);
+		file.delete();
+
+		Plain plain = new Plain("public1-3x3.txt");
+		plain.write("TestFile.txt");
+		
+		Plain plain2 = new Plain("TestFile.txt");
+		
+		Assertions.assertEquals(plain.toString(), plain2.toString());
+	}
+//
 //	@Test
 //	void public1_5cycles() throws FileNotFoundException {
 //		Plain plainOld = new Plain("public1-3x3.txt");

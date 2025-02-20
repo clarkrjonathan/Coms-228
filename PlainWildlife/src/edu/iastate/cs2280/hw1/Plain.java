@@ -8,7 +8,11 @@ package edu.iastate.cs2280.hw1;
 
 import java.io.File; 
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Path;
 import java.util.Scanner; 
 import java.util.Random; 
 
@@ -69,7 +73,6 @@ public class Plain
 			
 			col = 0;
 			String line = scanner.nextLine();
-			System.out.println(line);
 			Scanner lineScan = new Scanner(line);
 			while(lineScan.hasNext()) {
 				
@@ -113,7 +116,7 @@ public class Plain
 	 */
 	public Plain(int w)
 	{
-		
+		grid = new Living[w][w];
 	}
 	
 	
@@ -180,9 +183,9 @@ public class Plain
 	/**
 	 * Write the plain grid to an output file.  Also useful for saving a randomly 
 	 * generated plain for debugging purpose. 
-	 * @throws FileNotFoundException
+	 * @throws IOException 
 	 */
-	public void write(String outputFileName) throws FileNotFoundException
+	public void write(String outputFileName)
 	{
 		// TODO 
 		// 
@@ -193,5 +196,15 @@ public class Plain
 		//    the project description. 
 		// 
 		// 3. Close the file. 
+		try {
+			
+			FileWriter file = new FileWriter(outputFileName);
+			file.write(this + "");
+			file.close();
+			System.out.println(this);
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+		
 	}			
 }
