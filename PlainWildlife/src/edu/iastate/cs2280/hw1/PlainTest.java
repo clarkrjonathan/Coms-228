@@ -42,6 +42,14 @@ public class PlainTest {
 		
 		Assertions.assertEquals(plain.toString(), plain2.toString());
 	}
+	
+	@Test
+	void accessorTest() throws FileNotFoundException {
+		Plain plain = new Plain("public1-3x3.txt");
+		plain.setLivingThing(0, 0, new Empty(plain, 0,0));
+		
+		Assertions.assertEquals(State.EMPTY, plain.getGrid()[0][0]);
+	}
 //
 //	@Test
 //	void public1_5cycles() throws FileNotFoundException {

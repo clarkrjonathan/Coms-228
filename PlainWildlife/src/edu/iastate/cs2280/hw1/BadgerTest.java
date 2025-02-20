@@ -18,7 +18,16 @@ public class BadgerTest {
 		Assertions.assertEquals(State.BADGER, badger.who());
 	}
 	
+	@Test
 	void nextTest() throws FileNotFoundException {
-		Plain plain = new Plain("public1-3x3");
+		Plain plainOld = new Plain("public1-3x3.txt");
+		Plain newPlain = new Plain("public1-3x3.txt");
+		
+		plainOld.getGrid()[0][1].next(newPlain);
+		System.out.println(newPlain);
+		
+		Assertions.assertEquals(State.BADGER, plainOld.getGrid()[0][1].who());
+		Assertions.assertEquals(State.FOX, newPlain.getGrid()[0][1].who());
+		
 	}
 }

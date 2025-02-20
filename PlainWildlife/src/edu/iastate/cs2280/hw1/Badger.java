@@ -44,9 +44,10 @@ public class Badger extends Animal
 	public Living next(Plain pNew)
 	{
 		// TODO 
-		// 
+		// MAKE SURE NOT TO CHANGE THE GRID OF THE CURRENT PLAIN OR ANY OF THE OBJECTS
 		// See Living.java for an outline of the function. 
 		// See the project description for the survival rules for a badger. 
-		return null; 
+		Living[][] grid = plain.getGrid().clone();
+		grid[]
 	}
 }

@@ -111,6 +111,14 @@ public class Plain
 	}
 	
 	/**
+	 * constructs a plain from an existing grid
+	 * @param grid to initialize plain with
+	 */
+	public Plain(Living[][] grid) {
+		this.grid = grid;
+	}
+	
+	/**
 	 * Constructor that builds a w x w grid without initializing it. 
 	 * @param width  the grid 
 	 */
@@ -119,6 +127,24 @@ public class Plain
 		grid = new Living[w][w];
 	}
 	
+	/**
+	 * Accessor for grid to check neighborhood
+	 * returns a shallow copy to ensure its not mutated
+	 * @return A clone of the grid of living things
+	 */
+	public Living[][] getGrid() {
+		return grid.clone();
+	}
+	
+	/**
+	 * Sets living thing on grid to what is passed to it
+	 * @param r row
+	 * @param c column
+	 * @param thing living thing being passed
+	 */
+	public void setLivingThing(int r, int c, Living thing) {
+		grid[r][c] = thing;
+	}
 	
 	public int getWidth()
 	{
