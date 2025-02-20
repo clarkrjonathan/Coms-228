@@ -48,7 +48,37 @@ public class PlainTest {
 		Plain plain = new Plain("public1-3x3.txt");
 		plain.setLivingThing(0, 0, new Empty(plain, 0,0));
 		
-		Assertions.assertEquals(State.EMPTY, plain.getGrid()[0][0]);
+		Assertions.assertEquals(State.EMPTY, plain.getGrid()[0][0].who());
+	}
+	
+	@Test
+	void neighborCheck1() throws FileNotFoundException {
+		Plain plain = new Plain("public1-3x3.txt");
+		Assertions.assertEquals(1, plain.getNumNeighbors(1, 1, State.EMPTY));
+		Assertions.assertEquals(4, plain.getNumNeighbors(1, 1, State.FOX));
+	}
+	
+	@Test
+	void neighborCheck2() throws FileNotFoundException {
+		Plain plain = new Plain("public1-3x3.txt");
+		Assertions.assertEquals(1, plain.getNumNeighbors(1, 0, State.EMPTY));
+		Assertions.assertEquals(3, plain.getNumNeighbors(1, 0, State.FOX));
+	}
+	
+	@Test
+	void neighborCheck3() throws FileNotFoundException {
+		Plain plain = new Plain("public1-3x3.txt");
+		Assertions.assertEquals(1, plain.getNumNeighbors(1, 2, State.EMPTY));
+		Assertions.assertEquals(2, plain.getNumNeighbors(1, 2, State.FOX));
+		Assertions.assertEquals(1, plain.getNumNeighbors(1, 2, State.GRASS));
+	}
+	
+	@Test
+	void neighborCheck4() throws FileNotFoundException {
+		Plain plain = new Plain("public1-3x3.txt");
+		Assertions.assertEquals(0, plain.getNumNeighbors(0, 2, State.EMPTY));
+		Assertions.assertEquals(2, plain.getNumNeighbors(0, 2, State.FOX));
+		Assertions.assertEquals(0, plain.getNumNeighbors(0, 2, State.GRASS));
 	}
 //
 //	@Test
