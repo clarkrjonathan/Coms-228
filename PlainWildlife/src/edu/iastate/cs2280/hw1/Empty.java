@@ -13,7 +13,9 @@ public class Empty extends Living
 {
 	public Empty (Plain p, int r, int c) 
 	{
-		// TODO  
+		plain = p;
+		row = r;
+		column = c;
 	}
 	
 	public State who()
@@ -28,10 +30,31 @@ public class Empty extends Living
 	 */
 	public Living next(Plain pNew)
 	{
-		// TODO 
-		// 
-		// See Living.java for an outline of the function. 
-		// See the project description for corresponding survival rules. 
-		return null; 
+		// TODO  delete comments
+		//  
+//		Rabbit, if more than one neighboring Rabbit;
+//		b) otherwise, Fox, if more than one neighboring Fox;
+//		c) otherwise, Badger, if more than one neighboring Badger;
+//		d) otherwise, Grass, if at least one neighboring Grass;
+//		e) otherwise, Empty.
+		Living obj;
+		int population[] = new int[NUM_LIFE_FORMS];
+		census(population);
+		
+		if(population[RABBIT] > 1) {
+			obj = new Rabbit(plain, row, column, 0);
+		} else if (population[FOX] > 1) {
+			obj = new Fox(plain, row, column, 0);
+		} else if (population[BADGER] > 1) {
+			obj = new Badger(plain, row, column, 0);
+		} else if (population[GRASS] > 0) {
+			obj = new Grass(plain, row, column);
+		} else {
+			obj = this;
+		}
+		
+		pNew.setLivingThing(row, column, obj);
+		
+		return obj; 
 	}
 }
