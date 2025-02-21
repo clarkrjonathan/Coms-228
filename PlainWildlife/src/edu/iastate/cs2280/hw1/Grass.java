@@ -12,7 +12,6 @@ package edu.iastate.cs2280.hw1;
  */
 public class Grass extends Living 
 {
-	Plain plain;
 	public Grass (Plain p, int r, int c) 
 	{
 		plain = p;
@@ -34,6 +33,24 @@ public class Grass extends Living
 		// 
 		// See Living.java for an outline of the function. 
 		// See the project description for the survival rules for grass. 
-		return null; 
+//		Empty if at least three times as many Rabbits as Grasses in the neighborhood;
+//		b) otherwise, Rabbit if there are at least three Rabbits in the neighborhood;
+//		c) otherwise, Grass.
+		Living obj;
+		int population[] = new int[NUM_LIFE_FORMS];
+		
+		census(population);
+		
+		if(population[RABBIT] >= 3 * population[GRASS]) {
+			obj = new Empty(plain, row, column);
+		} else if (population[RABBIT] >= 3) {
+			obj = new Rabbit(plain, row, column, 0);
+		} else {
+			obj = this;
+		}
+		
+		pNew.setLivingThing(row, column, obj);
+		
+		return obj; 
 	}
 }
