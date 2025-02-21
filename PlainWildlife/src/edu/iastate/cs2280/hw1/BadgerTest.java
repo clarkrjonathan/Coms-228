@@ -19,7 +19,7 @@ public class BadgerTest {
 	}
 	
 	@Test
-	void nextTest() throws FileNotFoundException {
+	void nextTest1() throws FileNotFoundException {
 		Plain plainOld = new Plain("public1-3x3.txt");
 		Plain newPlain = new Plain("public1-3x3.txt");
 		
@@ -28,6 +28,32 @@ public class BadgerTest {
 		
 		Assertions.assertEquals(State.BADGER, plainOld.getGrid()[0][1].who());
 		Assertions.assertEquals(State.FOX, newPlain.getGrid()[0][1].who());
+		
+	}
+	
+	@Test
+	void nextTest2() throws FileNotFoundException {
+		Plain plainOld = new Plain("public2-6x6.txt");
+		Plain newPlain = new Plain("public2-6x6.txt");
+		
+		plainOld.getGrid()[1][0].next(newPlain);
+		System.out.println(newPlain);
+		
+		Assertions.assertEquals(State.BADGER, plainOld.getGrid()[1][0].who());
+		Assertions.assertEquals(State.FOX, newPlain.getGrid()[1][0].who());
+		
+	}
+	
+	@Test
+	void nextTest3() throws FileNotFoundException {
+		Plain plainOld = new Plain("public2-6x6.txt");
+		Plain newPlain = new Plain("public2-6x6.txt");
+		
+		plainOld.getGrid()[3][0].next(newPlain);
+		System.out.println(newPlain);
+		
+		Assertions.assertEquals(State.BADGER, plainOld.getGrid()[3][0].who());
+		Assertions.assertEquals(State.EMPTY, newPlain.getGrid()[3][0].who());
 		
 	}
 }

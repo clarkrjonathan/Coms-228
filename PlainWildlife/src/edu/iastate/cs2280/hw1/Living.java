@@ -45,7 +45,43 @@ public abstract class Living
 		// Count the numbers of Badgers, Empties, Foxes, Grasses, and Rabbits  
 		// in the 3x3 neighborhood centered at this Living object.  Store the 
 		// counts in the array population[] at indices 0, 1, 2, 3, 4, respectively. 
+		
+		Living grid[][] = plain.getGrid();
+		int width = plain.getWidth();
+		
+		int i = row == 0 ? 0 : row - 1;
+		int j;
+		while (i <= row + 1 && i < width) {
+			j = column == 0 ? 0 : column - 1;
+			while (j <= column + 1 && j < width) {
+				switch (grid[i][j].who()) {
+				case BADGER:
+					population[BADGER]++;
+					break;
+				case EMPTY:
+					population[EMPTY]++;
+					break;
+				case FOX:
+					population[FOX]++;
+					break;
+				case GRASS:
+					population[GRASS]++;
+					break;
+				case RABBIT:
+					population[RABBIT]++;
+					break;
+				default:
+					break;
+				
+				}
+				
+				j++;
+			}
+			i++;
+		}
+
 	}
+	
 
 	/**
 	 * Gets the identity of the life form on the square.
