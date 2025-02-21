@@ -50,10 +50,20 @@ public class BadgerTest {
 		Plain newPlain = new Plain("public2-6x6.txt");
 		
 		plainOld.getGrid()[3][0].next(newPlain);
-		System.out.println(newPlain);
 		
 		Assertions.assertEquals(State.BADGER, plainOld.getGrid()[3][0].who());
 		Assertions.assertEquals(State.EMPTY, newPlain.getGrid()[3][0].who());
+		
+	}
+	
+	@Test
+	void nextTest4() throws FileNotFoundException {
+		Plain plainOld = new Plain("allOld.txt");
+		Plain plainNew = new Plain("allOld.txt");
+		
+		plainOld.getGrid()[0][1].next(plainNew);
+		
+		Assertions.assertEquals(State.EMPTY, plainNew.getGrid()[0][1].who());
 		
 	}
 }

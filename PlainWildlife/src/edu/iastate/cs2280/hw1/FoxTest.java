@@ -16,5 +16,15 @@ public class FoxTest {
 		Assertions.assertEquals(age, fox.myAge());
 		Assertions.assertEquals(State.FOX, fox.who());
 	}
+	
+	@Test
+	void next1() throws FileNotFoundException {
+		Plain plain = new Plain("allOld.txt");
+		Plain newPlain = new Plain("allOld.txt");
+		
+		plain.getGrid()[0][0].next(newPlain);
+		
+		newPlain
+	}
 
 }
