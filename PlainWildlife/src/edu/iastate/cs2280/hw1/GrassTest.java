@@ -4,7 +4,9 @@ import java.io.FileNotFoundException;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
+/**
+ * @author Jonathan Clark
+ */
 public class GrassTest {
 	@Test
 	void construct() throws FileNotFoundException {

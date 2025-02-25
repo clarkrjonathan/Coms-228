@@ -1,11 +1,7 @@
 package edu.iastate.cs2280.hw1;
-
 /**
- *  
- * @author
- *
+ * @author Jonathan Clark
  */
-
 /**
  * A fox eats rabbits and competes against a badger. 
  */
@@ -41,19 +37,11 @@ public class Fox extends Animal
 	 */
 	public Living next(Plain pNew)
 	{
-		// TODO 
-		// 
-		// See Living.java for an outline of the function. 
-		// See the project description for the survival rules for a fox. 
-//		Empty if the Fox is currently at age 6;
-//		b) otherwise, Badger, if there are more Badgers than Foxes in the neighborhood;
-//		c) otherwise, Empty, if Badgers and Foxes together outnumber Rabbits in the neighborhood;
-//		d) otherwise, Fox (the fox will live on).
 		Living obj;
 		int population[] = new int[NUM_LIFE_FORMS];
 		census(population);
 		
-		if(age >=6) {
+		if(age >=FOX_MAX_AGE) {
 			obj = new Empty(plain, row, column);
 		} else if (population[BADGER] > population[FOX]){
 			obj = new Badger(plain, row, column, 0);
@@ -63,6 +51,7 @@ public class Fox extends Animal
 			obj = this;
 		}
 		
+		age++;
 		pNew.setLivingThing(row, column, obj);
 		
 		return obj; 

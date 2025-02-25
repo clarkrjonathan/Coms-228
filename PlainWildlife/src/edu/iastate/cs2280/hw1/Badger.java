@@ -42,18 +42,6 @@ public class Badger extends Animal
 	 */
 	public Living next(Plain pNew)
 	{
-		// TODO 
-		// MAKE SURE NOT TO CHANGE THE GRID OF THE CURRENT PLAIN OR ANY OF THE OBJECTS
-		// See Living.java for an outline of the function. 
-		// See the project description for the survival rules for a badger. 
-		//Living[][] grid = plain.getGrid().clone();
-		//grid[]
-//		
-//		Empty if the Badger is currently at age 4;
-//		b) otherwise, Fox, if there is only one Badger but there are more than one Fox in the
-//		neighborhood;
-//		c) otherwise, Empty, if Badgers and Foxes together outnumber Rabbits in the neighborhood;
-//		d) otherwise, Badger (the badger will live on)
 		Living obj;
 		int population[] = new int[NUM_LIFE_FORMS];
 		census(population);
@@ -70,6 +58,7 @@ public class Badger extends Animal
 			obj = this;
 		}
 		
+		age++;
 		pNew.setLivingThing(row, column, obj);
 
 		return obj;

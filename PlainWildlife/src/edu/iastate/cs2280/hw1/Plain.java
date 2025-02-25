@@ -8,11 +8,8 @@ package edu.iastate.cs2280.hw1;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Path;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -30,20 +27,7 @@ public class Plain {
 	 * Default constructor reads from a file
 	 */
 	public Plain(String inputFileName) throws FileNotFoundException {
-		// TODO
-		//
-		// Assumption: The input file is in correct format.
-		//
-		// You may create the grid plain in the following steps:
-		//
-		// 1) Reads the first line to determine the width of the grid.
-		//
-		// 2) Creates a grid object.
-		//
-		// 3) Fills in the grid according to the input file.
-		//
-		// Be sure to close the input file when you are done.
-
+		
 		File inputFile = new File(inputFileName);
 		Scanner scanner = new Scanner(inputFile);
 
@@ -122,6 +106,7 @@ public class Plain {
 	 */
 	public Plain(int w) {
 		grid = new Living[w][w];
+		width = w;
 	}
 
 	/**
@@ -157,8 +142,30 @@ public class Plain {
 	 */
 	public void randomInit() {
 		Random generator = new Random();
-
-		// TODO
+		for(int i = 0; i < width; i++) {
+			for(int j = 0; j < width; j++) {
+				switch (State.values()[generator.nextInt(Living.NUM_LIFE_FORMS)]) {
+				case BADGER:
+					grid[i][j] = new Badger(this, i, j, generator.nextInt(Badger.BADGER_MAX_AGE));
+					break;
+				case EMPTY:
+					grid[i][j] = new Empty(this, i, j);
+					break;
+				case FOX:
+					grid[i][j] = new Fox(this, i, j, generator.nextInt(Fox.FOX_MAX_AGE));
+					break;
+				case GRASS:
+					grid[i][j] = new Grass(this, i, j);
+					break;
+				case RABBIT:
+					grid[i][j] = new Rabbit(this, i, j, generator.nextInt(Rabbit.RABBIT_MAX_AGE));
+					break;
+				default:
+					break;
+					
+				}
+			}
+		}
 	}
 
 	/**
@@ -207,15 +214,7 @@ public class Plain {
 	 * @throws IOException
 	 */
 	public void write(String outputFileName) {
-		// TODO
-		//
-		// 1. Open the file.
-		//
-		// 2. Write to the file. The five life forms are represented by characters
-		// B, E, F, G, R. Leave one blank space in between. Examples are given in
-		// the project description.
-		//
-		// 3. Close the file.
+
 		try {
 
 			FileWriter file = new FileWriter(outputFileName);
@@ -227,32 +226,5 @@ public class Plain {
 
 	}
 	
-	/**
-	 * Returns the number of neighbors of a state type in the 3x3 neighborhood of an index
-	 * including the object at the index given
-	 * @param row
-	 * @param column
-	 * @param state type of neighbor
-	 * @return number of neighbors of specified type
-	 */
-	public int getNumNeighbors(int row, int column, State state) {
-		int total = 0;
-		
-		//bounds neighborhood within grid
-		int i = row == 0 ? 0 : row - 1;
-		int j;
-		while (i <= row + 1 && i < width) {
-			j = column == 0 ? 0 : column - 1;
-			while (j <= column + 1 && j < width) {
-				if(grid[i][j].who() == state) {
-					total++;
-				}
-				j++;
-			}
-			i++;
-		}
-		
-		
-		return total;
-	}
+
 }

@@ -39,13 +39,7 @@ public abstract class Living
 	 * @param population  counts of all life forms
 	 */
 	protected void census(int population[ ])
-	{		
-		// TODO 
-		// 
-		// Count the numbers of Badgers, Empties, Foxes, Grasses, and Rabbits  
-		// in the 3x3 neighborhood centered at this Living object.  Store the 
-		// counts in the array population[] at indices 0, 1, 2, 3, 4, respectively. 
-		
+	{	
 		Living grid[][] = plain.getGrid();
 		int width = plain.getWidth();
 		

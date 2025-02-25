@@ -1,11 +1,7 @@
 package edu.iastate.cs2280.hw1;
-
 /**
- *  
- * @author
- *
+ * @author Jonathan Clark
  */
-
 /*
  * This class is to be extended by the Badger, Fox, and Rabbit classes. 
  */

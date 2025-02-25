@@ -1,11 +1,8 @@
 package edu.iastate.cs2280.hw1;
 
 /**
- *  
- * @author
- *
+ * @author Jonathan Clark
  */
-
 /**
  * Grass remains if more than rabbits in the neighborhood; otherwise, it is eaten. 
  *
@@ -29,13 +26,6 @@ public class Grass extends Living
 	 */
 	public Living next(Plain pNew)
 	{
-		// TODO 
-		// 
-		// See Living.java for an outline of the function. 
-		// See the project description for the survival rules for grass. 
-//		Empty if at least three times as many Rabbits as Grasses in the neighborhood;
-//		b) otherwise, Rabbit if there are at least three Rabbits in the neighborhood;
-//		c) otherwise, Grass.
 		Living obj;
 		int population[] = new int[NUM_LIFE_FORMS];
 		

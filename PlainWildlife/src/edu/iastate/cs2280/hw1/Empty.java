@@ -1,9 +1,6 @@
 package edu.iastate.cs2280.hw1;
-
 /**
- *  
- * @author
- *
+ * @author Jonathan Clark
  */
 
 /** 
@@ -30,13 +27,6 @@ public class Empty extends Living
 	 */
 	public Living next(Plain pNew)
 	{
-		// TODO  delete comments
-		//  
-//		Rabbit, if more than one neighboring Rabbit;
-//		b) otherwise, Fox, if more than one neighboring Fox;
-//		c) otherwise, Badger, if more than one neighboring Badger;
-//		d) otherwise, Grass, if at least one neighboring Grass;
-//		e) otherwise, Empty.
 		Living obj;
 		int population[] = new int[NUM_LIFE_FORMS];
 		census(population);

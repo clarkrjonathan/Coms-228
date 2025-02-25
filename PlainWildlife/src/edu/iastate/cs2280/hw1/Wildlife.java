@@ -1,12 +1,11 @@
 package edu.iastate.cs2280.hw1;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner; 
 
 /**
  *  
- * @author
+ * @author Jonathan Clark
  *
  */
 
@@ -25,13 +24,15 @@ public class Wildlife
 	 */
 	public static void updatePlain(Plain pOld, Plain pNew)
 	{
-		// TODO 
-		// 
-		// For every life form (i.e., a Living object) in the grid pOld, generate  
-		// a Living object in the grid pNew at the corresponding location such that 
-		// the former life form changes into the latter life form. 
-		// 
-		// Employ the method next() of the Living class. 
+	
+		int width = pOld.getWidth();
+		Living grid[][] = pOld.getGrid();
+		
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < width; j++) {
+				grid[i][j].next(pNew);
+			}
+		}
 	}
 	
 	/**
@@ -42,35 +43,74 @@ public class Wildlife
 	 */
 	public static void main(String[] args) throws FileNotFoundException
 	{	
-		// TODO 
-		// 
-		// Generate wildlife simulations repeatedly like shown in the 
-		// sample run in the project description. 
-		// 
-		// 1. Enter 1 to generate a random plain, 2 to read a plain from an input
-		//    file, and 3 to end the simulation. (An input file always ends with 
-		//    the suffix .txt.)
-		// 
-		// 2. Print out standard messages as given in the project description. 
-		// 
-		// 3. For convenience, you may define two plains even and odd as below. 
-		//    In an even numbered cycle (starting at zero), generate the plain 
-		//    odd from the plain even; in an odd numbered cycle, generate even 
-		//    from odd. 
 		
-		Plain even;   				 // the plain after an even number of cycles 
-		Plain odd;                   // the plain after an odd number of cycles
+		int trial = 1;
+		int select = 0;
+		int cycles = 0;
+		int width = 0;
 		
-		even = new Plain("public1-3x3.txt");
-		System.out.println(even.getWidth());
+		String fileName = "";
+						// the plain after an odd number of cycles
+		Scanner scanner = new Scanner(System.in);
 		
-		// 4. Print out initial and final plains only.  No intermediate plains should
-		//    appear in the standard output.  (When debugging your program, you can 
-		//    print intermediate plains.)
-		// 
-		// 5. You may save some randomly generated plains as your own test cases. 
-		// 
-		// 6. It is not necessary to handle file input & output exceptions for this 
-		//    project. Assume data in an input file to be correctly formated. 
+		
+		System.out.println("Simulation of Wildlife of the Plain\r\n"
+				+ "keys: 1 (random plain) 2 (file input) 3 (exit)\n");
+		
+		while (select != 3) {
+			Plain even;   				 // the plain after an even number of cycles 
+			Plain odd;    
+			
+			System.out.print("Trial " + trial + ": ");
+			select = scanner.nextInt();
+			
+			if (select == 1) {
+				System.out.println("Plain input from file");
+				System.out.print("File name: ");
+				
+				fileName = scanner.next();
+				
+				odd = new Plain(fileName);
+				even = new Plain(fileName);
+				
+			} else if (select == 2) {
+				System.out.println("Random plain");
+				System.out.print("Enter grid width: ");
+				
+				width = scanner.nextInt();
+				
+				odd = new Plain(width);
+				even = new Plain(width);
+				
+				even.randomInit();
+			} else {
+				break;
+			}
+			
+			System.out.print("Enter the number of cycles: ");
+			cycles = scanner.nextInt();
+			
+			System.out.println("\nInitial Plain: ");
+			System.out.println(even);
+			
+			int i = 0;
+			while (i < cycles) {
+				if(i % 2 == 0) {
+					Wildlife.updatePlain(odd, even);
+				} else {
+					Wildlife.updatePlain(even, odd);
+				}
+				i++;
+				
+			}
+			
+			System.out.println("Final plain:\n");
+			System.out.println(cycles % 2 == 0 ? odd : even);
+			               
+			trial++;
+		}
+		
+		scanner.close();
+		
 	}
 }

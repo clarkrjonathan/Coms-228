@@ -1,11 +1,8 @@
 package edu.iastate.cs2280.hw1;
 
 /**
- *  
- * @author
- *
+ * @author Jonathan Clark
  */
-
 /**
  * 
  * To be implemented by the Animal class. 

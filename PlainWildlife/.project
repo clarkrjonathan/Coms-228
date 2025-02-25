@@ -16,7 +16,7 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>src/TestFile.txt</name>
+			<name>TestFile.txt</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/TestFile.txt</locationURI>
 		</link>
